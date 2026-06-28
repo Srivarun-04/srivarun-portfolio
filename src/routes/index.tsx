@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate, type Variants } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, useMotionValue, useMotionTemplate, type Variants, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import {
   ArrowUpRight,
   Github,
@@ -30,6 +30,8 @@ import {
   BookOpen,
   User,
   Gem,
+  Menu,
+  X,
 } from "lucide-react";
 
 
@@ -142,7 +144,7 @@ const stagger: Variants = {
 
 function Portfolio() {
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased">
+    <div className="min-h-screen bg-background text-foreground antialiased overflow-x-hidden">
       <Nav />
       <main>
         <Hero />
@@ -163,6 +165,19 @@ function Portfolio() {
 /* ---------------------------------- Nav ---------------------------------- */
 
 function Nav() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const links = [
     { href: "#work", label: "Work" },
     { href: "#about", label: "Mindset" },
@@ -173,8 +188,8 @@ function Nav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between px-4 sm:px-6">
-        <div className="surface-card flex w-full items-center justify-between rounded-full px-5 py-2.5">
-          <a href="#top" className="flex items-center gap-2 font-medium tracking-tight">
+        <div className="surface-card flex w-full items-center justify-between rounded-full px-5 py-2.5 relative z-50">
+          <a href="#top" className="flex items-center gap-2 font-medium tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md" onClick={() => setIsOpen(false)}>
             <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--gradient-accent)] text-xs font-bold text-white">
               S
             </span>
@@ -185,22 +200,65 @@ function Nav() {
               <a
                 key={l.href}
                 href={l.href}
-                className="transition-colors hover:text-foreground"
+                className="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm"
               >
                 {l.label}
               </a>
             ))}
           </nav>
-          <a
-            href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
-            aria-label="Contact Me"
-            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          <div className="hidden md:flex">
+            <a
+              href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
+              aria-label="Contact Me"
+              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            >
+              Contact Me
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </a>
+          </div>
+          
+          <button 
+            className="flex md:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-[var(--surface-2)] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
           >
-            Contact Me
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </a>
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl md:hidden"
+          >
+            <nav className="flex flex-col items-center gap-8 text-lg font-medium text-muted-foreground">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setIsOpen(false)}
+                  className="transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm min-h-[44px] flex items-center justify-center w-full"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a
+                href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
+                aria-label="Contact Me"
+                onClick={() => setIsOpen(false)}
+                className="inline-flex min-h-[44px] min-w-auto items-center justify-center gap-1.5 rounded-full bg-foreground px-6 py-2 text-base font-medium text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] mt-4"
+              >
+                Contact Me
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
@@ -256,7 +314,7 @@ function Hero() {
           >
             <motion.h1
               variants={fadeUp}
-              className="max-w-2xl text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
+              className="max-w-2xl text-balance text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
             >
               Building AI-powered applications <br className="hidden sm:inline" /> that solve <span className="text-gradient-accent">real-world</span> problems.
             </motion.h1>
@@ -315,7 +373,7 @@ function Hero() {
           </motion.div>
 
           {/* Right Side: Premium Orbit Animation */}
-          <div className="relative hidden h-[600px] w-full items-center justify-center lg:flex xl:translate-x-8">
+          <div className="relative flex h-[350px] sm:h-[450px] lg:h-[600px] w-full items-center justify-center scale-75 sm:scale-90 lg:scale-100 xl:translate-x-8 mt-10 lg:mt-0">
             {/* Core Glowing Orb */}
             <div className="absolute h-[300px] w-[300px] rounded-full bg-[var(--accent)]/15 blur-[80px]" />
             <div className="absolute flex h-32 w-32 items-center justify-center rounded-full border border-[var(--accent)]/20 bg-gradient-to-br from-[var(--surface)] to-[var(--surface-2)] shadow-[0_0_40px_rgba(var(--accent-rgb),0.1)] backdrop-blur-xl">
@@ -390,7 +448,7 @@ function FeaturedProject() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
-            className="relative order-2 lg:order-1"
+            className="relative order-1 lg:order-1"
           >
             {/* Glow behind mockup */}
             <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)]/10 blur-[100px]" />
@@ -419,7 +477,7 @@ function FeaturedProject() {
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             variants={stagger}
-            className="order-1 flex flex-col items-start lg:order-2"
+            className="order-2 flex flex-col items-start lg:order-2"
           >
             <motion.div variants={fadeUp} className="mb-4 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1 text-xs font-semibold tracking-wider text-[var(--accent)] uppercase backdrop-blur-sm">
               FEATURED PROJECT
@@ -455,10 +513,10 @@ function FeaturedProject() {
             </motion.div>
 
             {/* CTAs */}
-            <motion.div variants={fadeUp} className="mt-10 flex items-center gap-4">
+            <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <a
                 href="#"
-                className="group flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:scale-105"
+                className="group flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:scale-105 w-full sm:w-auto min-h-[44px]"
               >
                 Live Demo
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -468,7 +526,7 @@ function FeaturedProject() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="View AI Resume Analyzer source on GitHub"
-                className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-[var(--surface-2)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                className="flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-[var(--surface-2)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] w-full sm:w-auto min-h-[44px]"
               >
                 <Github className="h-4 w-4" />
                 GitHub
@@ -602,7 +660,7 @@ function Mindset() {
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             variants={stagger}
-            className="grid gap-6 sm:grid-cols-2"
+            className="grid gap-6 grid-cols-1 sm:grid-cols-2"
           >
             {principles.map((principle, idx) => (
               <motion.div
@@ -727,20 +785,20 @@ function ProjectCard({
             ))}
           </div>
 
-          <div className="mt-7 flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-col sm:flex-row flex-wrap gap-3">
             {project.github && project.github !== "#" ? (
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.name} source code on GitHub`}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm transition-colors hover:border-[var(--accent)]/40 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm transition-colors hover:border-[var(--accent)]/40 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] min-h-[44px] min-w-[44px] w-full sm:w-auto"
               >
                 <Github className="h-4 w-4" />
                 GitHub
               </a>
             ) : (
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm opacity-60 cursor-not-allowed">
+              <span className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm opacity-60 cursor-not-allowed min-h-[44px] min-w-[44px] w-full sm:w-auto">
                 <Github className="h-4 w-4" />
                 Coming Soon
               </span>
@@ -750,7 +808,7 @@ function ProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.name} live demo`}
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.03] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.03] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] min-h-[44px] min-w-[44px] w-full sm:w-auto"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Live Demo
@@ -940,7 +998,7 @@ function CodingJourney() {
             <motion.div
               key={idx}
               variants={fadeUp}
-              className="group relative flex flex-col rounded-3xl border border-[var(--border)]/50 bg-[var(--surface)] p-8 transition-all hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
+              className="group relative flex flex-col h-full rounded-3xl border border-[var(--border)]/50 bg-[var(--surface)] p-8 transition-all hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
             >
               <div className="mb-6 flex items-center gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--accent)] transition-transform group-hover:scale-110 shadow-sm border border-[var(--border)]/30">
@@ -983,7 +1041,7 @@ function CodingJourney() {
         >
           <motion.div
             variants={fadeUp}
-            className="relative overflow-hidden rounded-3xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--surface)] to-[var(--surface-2)] p-10 sm:p-12 text-center transition-all hover:border-[var(--accent)]/50 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
+            className="relative overflow-hidden rounded-3xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--surface)] to-[var(--surface-2)] p-6 sm:p-12 text-center transition-all hover:border-[var(--accent)]/50 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
           >
             {/* Soft background glow */}
             <div className="absolute left-1/2 top-1/2 -z-10 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)]/5 blur-[80px]" />
@@ -1231,11 +1289,11 @@ function Contact() {
             Whether it's an exciting project, an internship opportunity, or simply a conversation about technology, I'd love to connect and explore new ideas.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             <a
               href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
               aria-label="Contact me via email"
-              className="group relative inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-8 py-4 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:bg-[var(--foreground)]/90 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+              className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-8 py-4 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:bg-[var(--foreground)]/90 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] min-h-[44px] min-w-[44px] w-full sm:w-auto"
             >
               Contact Me
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -1244,7 +1302,7 @@ function Contact() {
               href="/resume.pdf"
               download="resume.pdf"
               aria-label="Download resume"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)]/80 bg-[var(--surface)]/50 px-8 py-4 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--accent)]/50 hover:bg-[var(--surface)] hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)]/80 bg-[var(--surface)]/50 px-8 py-4 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--accent)]/50 hover:bg-[var(--surface)] hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] min-h-[44px] min-w-[44px] w-full sm:w-auto"
             >
               {/* TODO: Ensure latest resume.pdf is placed in public/ folder */}
               <Download className="h-4 w-4 text-muted-foreground" />
