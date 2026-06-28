@@ -81,7 +81,7 @@ const projects = [
       "Skill gap analysis",
       "Learning roadmap",
     ],
-    github: "https://github.com/",
+    github: "https://github.com/Srivarun-04/ai_resume_optimizer",
     demo: "#",
   },
   {
@@ -98,7 +98,7 @@ const projects = [
       "Real-time prediction",
       "Lightweight & explainable",
     ],
-    github: "https://github.com/",
+    github: "https://github.com/Srivarun-04/predictive-text-nlp-engine",
     demo: "#",
   },
   {
@@ -115,7 +115,7 @@ const projects = [
       "Instant download",
       "Modern interface",
     ],
-    github: "https://github.com/",
+    github: "#",
     demo: "#",
   },
 ];
@@ -192,10 +192,11 @@ function Nav() {
             ))}
           </nav>
           <a
-            href="#contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.03]"
+            href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
+            aria-label="Contact Me"
+            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
           >
-            Get in touch
+            Contact Me
             <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
         </div>
@@ -281,7 +282,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 href="#work"
-                className="group inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-7 py-3.5 text-sm font-medium text-[var(--background)] shadow-lg transition-colors hover:bg-[var(--foreground)]/90"
+                className="group inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-7 py-3.5 text-sm font-medium text-[var(--background)] shadow-lg transition-colors hover:bg-[var(--foreground)]/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
               >
                 View Projects
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -289,22 +290,25 @@ function Hero() {
               <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                href="#"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/50 px-7 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-colors hover:border-[var(--accent)]/40 hover:bg-[var(--surface)]"
+                href="/resume.pdf"
+                download="resume.pdf"
+                aria-label="Download resume"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/50 px-7 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-colors hover:border-[var(--accent)]/40 hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
               >
+                {/* TODO: Ensure latest resume.pdf is placed in public/ folder */}
                 <Download className="h-4 w-4 text-muted-foreground" />
                 Download Resume
               </motion.a>
             </motion.div>
 
             <motion.div variants={fadeUp} className="mt-12 flex items-center gap-6">
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="https://github.com/" aria-label="GitHub" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="https://github.com/Srivarun-04" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md">
                 <Github className="h-5 w-5" />
               </motion.a>
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="https://linkedin.com/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground">
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="https://www.linkedin.com/in/manthena-srivarun/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md">
                 <Linkedin className="h-5 w-5" />
               </motion.a>
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="mailto:srivarun@example.com" aria-label="Email" className="text-muted-foreground transition-colors hover:text-foreground">
+              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." aria-label="Contact via Email" className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md">
                 <Mail className="h-5 w-5" />
               </motion.a>
             </motion.div>
@@ -460,10 +464,11 @@ function FeaturedProject() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="https://github.com/"
+                href="https://github.com/Srivarun-04/ai_resume_optimizer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-[var(--surface-2)]"
+                aria-label="View AI Resume Analyzer source on GitHub"
+                className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-[var(--surface-2)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
               >
                 <Github className="h-4 w-4" />
                 GitHub
@@ -491,7 +496,7 @@ function SocialIcon({
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="surface-card grid h-10 w-10 place-items-center rounded-full transition-all hover:-translate-y-0.5 hover:text-foreground hover:border-[var(--accent)]/40"
+      className="surface-card grid h-10 w-10 place-items-center rounded-full transition-all hover:-translate-y-0.5 hover:text-foreground hover:border-[var(--accent)]/40 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
     >
       {children}
     </a>
@@ -723,20 +728,29 @@ function ProjectCard({
           </div>
 
           <div className="mt-7 flex flex-wrap gap-3">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm transition-colors hover:border-[var(--accent)]/40"
-            >
-              <Github className="h-4 w-4" />
-              GitHub
-            </a>
+            {project.github && project.github !== "#" ? (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`View ${project.name} source code on GitHub`}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm transition-colors hover:border-[var(--accent)]/40 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+            ) : (
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-[var(--surface-2)] px-4 py-2 text-sm opacity-60 cursor-not-allowed">
+                <Github className="h-4 w-4" />
+                Coming Soon
+              </span>
+            )}
             <a
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.03]"
+              aria-label={`View ${project.name} live demo`}
+              className="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition-transform hover:scale-[1.03] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
             >
               <ExternalLink className="h-3.5 w-3.5" />
               Live Demo
@@ -1219,30 +1233,31 @@ function Contact() {
 
           <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:srivarun@example.com"
-              className="group relative inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-8 py-4 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:bg-[var(--foreground)]/90 hover:scale-105"
+              href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
+              aria-label="Contact me via email"
+              className="group relative inline-flex items-center gap-2 rounded-full bg-[var(--foreground)] px-8 py-4 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:bg-[var(--foreground)]/90 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
             >
-              Get In Touch
+              Contact Me
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)]/80 bg-[var(--surface)]/50 px-8 py-4 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--accent)]/50 hover:bg-[var(--surface)] hover:scale-105"
+              href="/resume.pdf"
+              download="resume.pdf"
+              aria-label="Download resume"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--border)]/80 bg-[var(--surface)]/50 px-8 py-4 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--accent)]/50 hover:bg-[var(--surface)] hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
             >
+              {/* TODO: Ensure latest resume.pdf is placed in public/ folder */}
               <Download className="h-4 w-4 text-muted-foreground" />
               Download Resume
             </a>
           </motion.div>
 
           <motion.div variants={fadeUp} className="mt-16 flex items-center justify-center gap-6">
-            <SocialIcon href="https://github.com/" label="GitHub">
+            <SocialIcon href="https://github.com/Srivarun-04" label="GitHub Profile">
               <Github className="h-5 w-5" />
             </SocialIcon>
-            <SocialIcon href="https://linkedin.com/" label="LinkedIn">
+            <SocialIcon href="https://www.linkedin.com/in/manthena-srivarun/" label="LinkedIn Profile">
               <Linkedin className="h-5 w-5" />
-            </SocialIcon>
-            <SocialIcon href="mailto:srivarun@example.com" label="Email">
-              <Mail className="h-5 w-5" />
             </SocialIcon>
           </motion.div>
         </motion.div>
@@ -1264,14 +1279,14 @@ function Footer() {
           <span>© {new Date().getFullYear()} Srivarun Manthena</span>
         </div>
         <div className="flex items-center gap-5">
-          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+          <a href="https://github.com/Srivarun-04" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer" className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm">
             GitHub
           </a>
-          <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+          <a href="https://www.linkedin.com/in/manthena-srivarun/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm">
             LinkedIn
           </a>
-          <a href="mailto:srivarun@example.com" className="hover:text-foreground">
-            Email
+          <a href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." aria-label="Contact Me via Email" className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm">
+            Contact Me
           </a>
         </div>
       </div>
