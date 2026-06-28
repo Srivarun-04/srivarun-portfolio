@@ -190,10 +190,9 @@ function Nav() {
       <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between px-4 sm:px-6">
         <div className="surface-card flex w-full items-center justify-between rounded-full px-5 py-2.5 relative z-50">
           <a href="#top" className="flex items-center gap-2 font-medium tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md" onClick={() => setIsOpen(false)}>
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-[var(--gradient-accent)] text-xs font-bold text-white">
-              S
+            <span className="flex h-7 items-center justify-center rounded-full bg-[var(--gradient-accent)] px-3 text-xs font-bold text-white tracking-wide">
+              Srivarun
             </span>
-            <span className="hidden sm:inline">Srivarun</span>
           </a>
           <nav className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
             {links.map((l) => (
