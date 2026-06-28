@@ -166,7 +166,7 @@ function Portfolio() {
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -206,18 +206,9 @@ function Nav() {
               </a>
             ))}
           </nav>
-          <div className="hidden md:flex">
-            <a
-              href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
-              aria-label="Contact Me"
-              className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center gap-1.5 rounded-full bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-            >
-              Contact Me
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </a>
-          </div>
-          
-          <button 
+
+
+          <button
             className="flex md:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-[var(--surface-2)] text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle Menu"
@@ -229,9 +220,9 @@ function Nav() {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl md:hidden"
           >
@@ -246,15 +237,7 @@ function Nav() {
                   {l.label}
                 </a>
               ))}
-              <a
-                href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
-                aria-label="Contact Me"
-                onClick={() => setIsOpen(false)}
-                className="inline-flex min-h-[44px] min-w-auto items-center justify-center gap-1.5 rounded-full bg-foreground px-6 py-2 text-base font-medium text-background transition-transform hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] mt-4"
-              >
-                Contact Me
-                <ArrowUpRight className="h-4 w-4" />
-              </a>
+
             </nav>
           </motion.div>
         )}
@@ -349,7 +332,7 @@ function Hero() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 href="/resume.pdf"
-                download="resume.pdf"
+                download="Srivarun_Manthena_Resume.pdf"
                 aria-label="Download resume"
                 className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/50 px-7 py-3.5 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-colors hover:border-[var(--accent)]/40 hover:bg-[var(--surface)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
               >
@@ -366,9 +349,7 @@ function Hero() {
               <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="https://www.linkedin.com/in/manthena-srivarun/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md">
                 <Linkedin className="h-5 w-5" />
               </motion.a>
-              <motion.a whileHover={{ scale: 1.1, y: -2 }} whileTap={{ scale: 0.9 }} href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." aria-label="Contact via Email" className="text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-md">
-                <Mail className="h-5 w-5" />
-              </motion.a>
+
             </motion.div>
           </motion.div>
 
@@ -827,7 +808,7 @@ function TechStack() {
     {
       title: "Programming Languages",
       icon: Code2,
-      items: ["Python", "Java", "JavaScript"],
+      items: ["C", "Python", "Java", "JavaScript", "TypeScrip"],
       className: "md:col-span-2",
     },
     {
@@ -1291,16 +1272,8 @@ function Contact() {
 
           <motion.div variants={fadeUp} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             <a
-              href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect."
-              aria-label="Contact me via email"
-              className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-[var(--foreground)] px-8 py-4 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:bg-[var(--foreground)]/90 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] min-h-[44px] min-w-[44px] w-full sm:w-auto"
-            >
-              Contact Me
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
               href="/resume.pdf"
-              download="resume.pdf"
+              download="Srivarun_Manthena_Resume.pdf"
               aria-label="Download resume"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)]/80 bg-[var(--surface)]/50 px-8 py-4 text-sm font-medium text-[var(--foreground)] backdrop-blur-md transition-all hover:border-[var(--accent)]/50 hover:bg-[var(--surface)] hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] min-h-[44px] min-w-[44px] w-full sm:w-auto"
             >
@@ -1343,8 +1316,8 @@ function Footer() {
           <a href="https://www.linkedin.com/in/manthena-srivarun/" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer" className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm">
             LinkedIn
           </a>
-          <a href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." aria-label="Contact Me via Email" className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm">
-            Contact Me
+          <a href="mailto:manthenasrivarun@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Srivarun,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." aria-label="Contact Me via Email" target="_blank" rel="noopener noreferrer" className="hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-sm">
+            manthenasrivarun@gmail.com
           </a>
         </div>
       </div>
