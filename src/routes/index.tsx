@@ -19,6 +19,17 @@ import {
   Award,
   MapPin,
   ExternalLink,
+  FileText,
+  MessageSquare,
+  Compass,
+  BarChart,
+  Map,
+  Cpu,
+  ArrowRight,
+  Target,
+  BookOpen,
+  User,
+  Gem,
 } from "lucide-react";
 
 
@@ -112,18 +123,23 @@ const projects = [
 const skillGroups = [
   {
     icon: Code2,
-    title: "Languages",
-    items: ["Python", "Java", "JavaScript", "HTML", "CSS"],
+    title: "Programming Languages",
+    items: ["Python", "Java", "JavaScript"],
   },
   {
     icon: Layers,
-    title: "Frameworks",
-    items: ["React", "Next.js", "Node.js", "FastAPI"],
+    title: "Frontend",
+    items: ["React", "Next.js", "Tailwind CSS"],
+  },
+  {
+    icon: Network,
+    title: "Backend",
+    items: ["FastAPI", "Node.js", "REST APIs"],
   },
   {
     icon: Brain,
-    title: "AI & ML",
-    items: ["Machine Learning", "NLP", "NLTK", "Prompt Engineering", "DSA"],
+    title: "Artificial Intelligence",
+    items: ["Machine Learning", "Natural Language Processing"],
   },
   {
     icon: Database,
@@ -132,28 +148,11 @@ const skillGroups = [
   },
   {
     icon: Wrench,
-    title: "Tools",
+    title: "Developer Tools",
     items: ["Git", "GitHub", "VS Code", "Postman"],
   },
 ];
 
-const codingStats = [
-  { label: "Problems Solved", value: "350+", progress: 78 },
-  { label: "Consistency", value: "Daily", progress: 92 },
-  { label: "Contests", value: "Active", progress: 65 },
-];
-
-const dsaTopics = [
-  "Arrays",
-  "Strings",
-  "Trees",
-  "Graphs",
-  "Dynamic Programming",
-  "Recursion",
-  "Greedy",
-  "Hashing",
-  "Sliding Window",
-];
 
 const certifications = [
   { title: "HR Analytics", issuer: "NPTEL", year: "2024" },
@@ -184,10 +183,12 @@ function Portfolio() {
       <Nav />
       <main>
         <Hero />
-        <About />
+        <FeaturedProject />
+        <Mindset />
         <Projects />
         <Skills />
         <CodingJourney />
+        <EngineeringToolkit />
         <Education />
         <Certifications />
         <Contact />
@@ -202,7 +203,7 @@ function Portfolio() {
 function Nav() {
   const links = [
     { href: "#work", label: "Work" },
-    { href: "#about", label: "About" },
+    { href: "#about", label: "Mindset" },
     { href: "#skills", label: "Skills" },
     { href: "#journey", label: "Journey" },
     { href: "#contact", label: "Contact" },
@@ -398,6 +399,121 @@ function Hero() {
   );
 }
 
+/* ---------------------------- Featured Project --------------------------- */
+
+function FeaturedProject() {
+  const features = [
+    { icon: FileText, label: "ATS Score Analysis" },
+    { icon: MessageSquare, label: "Resume Feedback" },
+    { icon: Compass, label: "Career Recommendations" },
+    { icon: BarChart, label: "Skill Gap Analysis" },
+    { icon: Map, label: "Learning Roadmap" },
+    { icon: Cpu, label: "AI-Powered Insights" },
+  ];
+
+  const techStack = ["Python", "FastAPI", "Next.js", "React", "Tailwind CSS", "Machine Learning"];
+
+  return (
+    <section className="relative overflow-hidden py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid items-center gap-16 lg:grid-cols-2 lg:gap-12">
+
+          {/* Left Side: Mockup */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }}
+            className="relative order-2 lg:order-1"
+          >
+            {/* Glow behind mockup */}
+            <div className="absolute top-1/2 left-1/2 -z-10 h-[80%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)]/10 blur-[100px]" />
+
+            <div className="group relative overflow-hidden rounded-2xl border border-[var(--border)]/50 bg-[var(--surface)] shadow-2xl transition-all hover:border-[var(--accent)]/30">
+              {/* Browser Frame */}
+              <div className="flex h-10 items-center gap-2 border-b border-[var(--border)]/50 bg-[var(--surface-2)]/50 px-4">
+                <div className="h-3 w-3 rounded-full bg-red-500/80" />
+                <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                <div className="h-3 w-3 rounded-full bg-green-500/80" />
+              </div>
+
+              <div className="aspect-[16/10] overflow-hidden bg-background">
+                <img
+                  src={projectResume}
+                  alt="AI Resume & Career Analyzer Dashboard"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Side: Content */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+            className="order-1 flex flex-col items-start lg:order-2"
+          >
+            <motion.div variants={fadeUp} className="mb-4 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1 text-xs font-semibold tracking-wider text-[var(--accent)] uppercase backdrop-blur-sm">
+              FEATURED PROJECT
+            </motion.div>
+
+            <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+              AI Resume & Career Analyzer
+            </motion.h2>
+
+            <motion.p variants={fadeUp} className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              Turn any resume into a personalized career roadmap. Stop guessing why you&apos;re not getting interviews and start taking data-driven steps to improve your profile, fill skill gaps, and land your dream job.
+            </motion.p>
+
+            {/* Feature Grid */}
+            <motion.div variants={fadeUp} className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 w-full">
+              {features.map((feature, idx) => (
+                <div key={idx} className="group flex items-center gap-3 rounded-xl border border-transparent p-2 transition-colors hover:border-[var(--border)]/50 hover:bg-[var(--surface)]/30">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--surface-2)] text-[var(--accent)] transition-transform group-hover:scale-110">
+                    <feature.icon className="h-5 w-5" />
+                  </div>
+                  <span className="text-sm font-medium text-foreground/90">{feature.label}</span>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Tech Stack */}
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-2">
+              {techStack.map((tech) => (
+                <span key={tech} className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1 text-xs font-medium text-muted-foreground shadow-sm transition-colors hover:border-[var(--accent)]/40 hover:text-foreground">
+                  {tech}
+                </span>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div variants={fadeUp} className="mt-10 flex items-center gap-4">
+              <a
+                href="#"
+                className="group flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-medium text-[var(--background)] shadow-lg transition-all hover:scale-105"
+              >
+                Live Demo
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-[var(--surface-2)]"
+              >
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function SocialIcon({
   href,
   label,
@@ -460,46 +576,83 @@ function SectionHeader({
   );
 }
 
-/* --------------------------------- About --------------------------------- */
+/* --------------------------------- Mindset --------------------------------- */
 
-function About() {
-  const beats = [
-    { year: "2021", text: "Wrote my first lines of code — and never stopped." },
-    { year: "2023", text: "Fell in love with Machine Learning & NLP." },
-    { year: "2024", text: "Shipped AI applications that solve real problems." },
-    { year: "Today", text: "Practicing DSA daily, building products, always shipping." },
+function Mindset() {
+  const principles = [
+    {
+      icon: Target,
+      title: "Build with Purpose",
+      description: "Create solutions that solve real problems.",
+    },
+    {
+      icon: BookOpen,
+      title: "Always Learning",
+      description: "Continuously improving through projects, exploration, and curiosity.",
+    },
+    {
+      icon: User,
+      title: "Think Like a User",
+      description: "Great software is intuitive, useful, and enjoyable.",
+    },
+    {
+      icon: Code2,
+      title: "Engineering Mindset",
+      description: "Write maintainable, scalable, and elegant solutions.",
+    },
   ];
+
   return (
     <section id="about" className="relative py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeader
-          eyebrow="About"
-          title={
-            <>
-              An engineer&apos;s mind,{" "}
-              <span className="font-display italic text-gradient-accent">a builder&apos;s heart.</span>
-            </>
-          }
-          description="I learn by building. Every project is an excuse to dig deeper into how systems think, scale, and feel."
-        />
-        <motion.ol
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={stagger}
-          className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2"
-        >
-          {beats.map((b) => (
-            <motion.li
-              key={b.year}
-              variants={fadeUp}
-              className="surface-card hover-lift group rounded-2xl p-6"
-            >
-              <div className="font-display text-sm text-[var(--accent)]">{b.year}</div>
-              <p className="mt-2 text-base leading-relaxed text-foreground/90">{b.text}</p>
-            </motion.li>
-          ))}
-        </motion.ol>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid gap-16 lg:grid-cols-2 lg:gap-24 items-center">
+
+          {/* Left Side */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+            className="flex flex-col items-start justify-center relative"
+          >
+            {/* Subtle vertical accent line beside the text */}
+            <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-[var(--accent)]/50 via-[var(--accent)]/10 to-transparent -ml-6 hidden sm:block" />
+
+            <motion.div variants={fadeUp} className="mb-6 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-xs font-semibold tracking-wider text-[var(--accent)] uppercase backdrop-blur-sm">
+              WHY I BUILD
+            </motion.div>
+            <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl leading-[1.1]">
+              Building software is about solving meaningful problems.
+            </motion.h2>
+            <motion.p variants={fadeUp} className="mt-8 text-lg leading-relaxed text-muted-foreground max-w-lg">
+              I enjoy creating software that combines artificial intelligence, clean engineering, and thoughtful user experiences. Every project is an opportunity to learn, improve, and build something people genuinely find useful.
+            </motion.p>
+          </motion.div>
+
+          {/* Right Side */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+            className="grid gap-6 sm:grid-cols-2"
+          >
+            {principles.map((principle, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeUp}
+                className="group relative flex flex-col items-start rounded-3xl border border-[var(--border)]/50 bg-[var(--surface)] p-8 transition-all hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
+              >
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--accent)] transition-transform group-hover:scale-110 shadow-sm border border-[var(--border)]/30">
+                  <principle.icon className="h-6 w-6 stroke-[1.5]" />
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">{principle.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{principle.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
@@ -640,11 +793,10 @@ function Skills() {
     <section id="skills" className="relative py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeader
-          eyebrow="Toolkit"
+          eyebrow="Tech Stack"
           title={
             <>
-              The stack I&apos;m{" "}
-              <span className="font-display italic text-gradient-accent">fluent in.</span>
+              Technologies I <span className="font-display italic text-gradient-accent">build with.</span>
             </>
           }
         />
@@ -653,28 +805,25 @@ function Skills() {
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
-          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
           {skillGroups.map((g) => (
             <motion.div
               key={g.title}
               variants={fadeUp}
-              className="surface-card hover-lift rounded-2xl p-6"
+              className="group relative flex flex-col items-start rounded-3xl border border-[var(--border)]/50 bg-[var(--surface)] p-8 transition-all hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
             >
-              <div className="flex items-center gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--surface-2)] text-[var(--accent)]">
-                  <g.icon className="h-4 w-4" />
-                </div>
-                <h3 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-                  {g.title}
-                </h3>
+              <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--accent)] transition-transform group-hover:scale-110 shadow-sm border border-[var(--border)]/30">
+                <g.icon className="h-6 w-6 stroke-[1.5]" />
               </div>
-              <ul className="mt-5 flex flex-wrap gap-2">
+              <h3 className="text-xl font-semibold tracking-tight text-foreground mb-5">{g.title}</h3>
+              <ul className="flex flex-col gap-3 w-full">
                 {g.items.map((it) => (
                   <li
                     key={it}
-                    className="rounded-full border border-border bg-[var(--surface-2)]/60 px-3 py-1 text-sm text-foreground/90"
+                    className="flex items-center text-[15px] leading-relaxed text-muted-foreground"
                   >
+                    <span className="mr-3 h-1.5 w-1.5 rounded-full bg-[var(--accent)]/60" />
                     {it}
                   </li>
                 ))}
@@ -690,84 +839,213 @@ function Skills() {
 /* ----------------------------- Coding Journey ---------------------------- */
 
 function CodingJourney() {
+  const journeyCards = [
+    {
+      title: "Problem Solving",
+      icon: Target,
+      items: ["Dynamic Programming", "Sliding Window", "Hash Maps", "Binary Search", "Graphs", "Trees"],
+    },
+    {
+      title: "Current Focus",
+      icon: Compass,
+      items: [
+        "Building AI-powered applications",
+        "Preparing for Software Engineering roles",
+        "Improving backend architecture",
+        "Learning scalable systems",
+      ],
+    },
+
+  ];
+
   return (
     <section id="journey" className="relative py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <SectionHeader
-          eyebrow="Coding Journey"
-          title={
-            <>
-              Sharpening the craft,{" "}
-              <span className="font-display italic text-gradient-accent">one problem a day.</span>
-            </>
-          }
-          description="DSA isn't a checkbox — it's how I learn to think clearly under constraints."
-        />
 
-        <div className="grid gap-6 lg:grid-cols-5">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-80px" }}
-            variants={stagger}
-            className="grid gap-6 lg:col-span-2"
-          >
-            {codingStats.map((s) => (
-              <motion.div
-                key={s.label}
-                variants={fadeUp}
-                className="surface-card rounded-2xl p-6"
-              >
-                <div className="flex items-baseline justify-between">
-                  <div className="text-sm text-muted-foreground">{s.label}</div>
-                  <div className="text-2xl font-semibold tracking-tight">{s.value}</div>
-                </div>
-                <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-[var(--surface-2)]">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${s.progress}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1.2, ease: [0.2, 0.7, 0.2, 1] }}
-                    className="h-full rounded-full bg-[var(--gradient-accent)]"
-                  />
-                </div>
-              </motion.div>
-            ))}
+        {/* Top Header Section */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="mb-16 flex flex-col items-center text-center"
+        >
+          <motion.div variants={fadeUp} className="mb-6 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-xs font-semibold tracking-wider text-[var(--accent)] uppercase backdrop-blur-sm">
+            CODING JOURNEY
           </motion.div>
+          <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl max-w-2xl">
+            Consistency creates great engineers.
+          </motion.h2>
+          <motion.p variants={fadeUp} className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl">
+            I believe in improving every day through practice, projects, and curiosity.
+            Here is a snapshot of what I am learning and focusing on right now.
+          </motion.p>
+        </motion.div>
 
+        {/* 4 Premium Info Cards */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="grid gap-6 sm:grid-cols-2 items-start"
+        >
+          {journeyCards.map((card, idx) => (
+            <motion.div
+              key={idx}
+              variants={fadeUp}
+              className="group relative flex flex-col rounded-3xl border border-[var(--border)]/50 bg-[var(--surface)] p-6 sm:p-8 transition-all hover:-translate-y-1 hover:border-[var(--accent)]/40 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
+            >
+              <div className="mb-6 flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--accent)] transition-transform group-hover:scale-110 shadow-sm border border-[var(--border)]/30">
+                  <card.icon className="h-6 w-6 stroke-[1.5]" />
+                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-foreground">{card.title}</h3>
+              </div>
+
+              <ul className="flex flex-col gap-3 w-full">
+                {card.items.map((it, i) => (
+                  <li key={i} className="flex items-start text-[15px] leading-relaxed text-muted-foreground">
+                    <span className="mr-3 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]/60" />
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Bottom Highlighted Quote Card */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="mt-6"
+        >
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="surface-card relative overflow-hidden rounded-2xl p-8 lg:col-span-3"
+            variants={fadeUp}
+            className="relative overflow-hidden rounded-3xl border border-[var(--accent)]/30 bg-gradient-to-br from-[var(--surface)] to-[var(--surface-2)] p-10 sm:p-12 text-center transition-all hover:border-[var(--accent)]/50 hover:shadow-2xl hover:shadow-[var(--accent)]/10"
           >
-            <Trophy className="absolute right-6 top-6 h-5 w-5 text-[var(--accent)]" />
-            <div className="text-sm uppercase tracking-wider text-muted-foreground">
-              Favorite topics
+            {/* Soft background glow */}
+            <div className="absolute left-1/2 top-1/2 -z-10 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-[var(--accent)]/5 blur-[80px]" />
+
+            <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20">
+              <Sparkles className="h-7 w-7 stroke-[1.5]" />
             </div>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {dsaTopics.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-full border border-border bg-[var(--surface-2)]/60 px-3 py-1.5 text-sm transition-colors hover:border-[var(--accent)]/40 hover:text-foreground"
-                >
-                  {t}
-                </span>
-              ))}
+
+            <div className="mb-4 text-sm font-semibold tracking-widest text-[var(--accent)] uppercase">
+              Current Goal
             </div>
-            <div className="mt-8 grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
-              <div className="rounded-xl border border-border bg-[var(--surface-2)]/40 p-4">
-                <div className="text-foreground">Platforms</div>
-                <p className="mt-1">LeetCode · GeeksForGeeks · Codeforces</p>
-              </div>
-              <div className="rounded-xl border border-border bg-[var(--surface-2)]/40 p-4">
-                <div className="text-foreground">Mindset</div>
-                <p className="mt-1">Curious. Patient. Always optimizing.</p>
-              </div>
-            </div>
+            <h3 className="mx-auto max-w-3xl text-2xl sm:text-3xl font-medium leading-relaxed tracking-tight text-foreground">
+              "Want to build software
+              people remember using,
+              not just software that works."
+            </h3>
           </motion.div>
-        </div>
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
+
+/* -------------------------- Engineering Toolkit -------------------------- */
+
+function EngineeringToolkit() {
+  const toolkitData = [
+    {
+      title: "Programming Languages",
+      icon: Code2,
+      items: ["Python", "Java", "JavaScript"],
+      className: "md:col-span-2",
+    },
+    {
+      title: "Databases",
+      icon: Database,
+      items: ["MongoDB", "MySQL"],
+      className: "md:col-span-1",
+    },
+    {
+      title: "Artificial Intelligence",
+      icon: Brain,
+      items: ["Machine Learning", "Natural Language Processing", "Prompt Engineering", "AI Integrations"],
+      className: "md:col-span-2 md:row-span-2",
+    },
+    {
+      title: "Frontend",
+      icon: Layers,
+      items: ["React", "Next.js", "HTML", "CSS", "Tailwind CSS"],
+      className: "md:col-span-1",
+    },
+    {
+      title: "Backend",
+      icon: Network,
+      items: ["FastAPI", "Node.js", "Express.js", "REST APIs"],
+      className: "md:col-span-1",
+    },
+    {
+      title: "Developer Tools",
+      icon: Wrench,
+      items: ["Git", "GitHub", "VS Code", "Postman", "Linux"],
+      className: "md:col-span-2",
+    },
+  ];
+
+  return (
+    <section id="toolkit" className="relative py-32">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="mb-16 flex flex-col items-center text-center"
+        >
+          <motion.div variants={fadeUp} className="mb-6 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-3 py-1.5 text-xs font-semibold tracking-wider text-[var(--accent)] uppercase backdrop-blur-sm">
+            ENGINEERING TOOLKIT
+          </motion.div>
+          <motion.h2 variants={fadeUp} className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl max-w-2xl">
+            The technologies and tools I use to turn ideas into reliable software.
+          </motion.h2>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+        >
+          {toolkitData.map((card, idx) => (
+            <motion.div
+              key={idx}
+              variants={fadeUp}
+              className={`group relative flex flex-col rounded-3xl border border-[var(--border)]/50 bg-[var(--surface)] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-[var(--accent)]/50 hover:shadow-2xl hover:shadow-[var(--accent)]/20 overflow-hidden ${card.className}`}
+            >
+              {/* Subtle background glow on hover */}
+              <div className="absolute -right-20 -top-20 z-0 h-40 w-40 rounded-full bg-[var(--accent)]/0 blur-[50px] transition-all duration-500 group-hover:bg-[var(--accent)]/10" />
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[var(--surface-2)] text-[var(--accent)] transition-transform duration-500 group-hover:scale-110 shadow-sm border border-[var(--border)]/30">
+                    <card.icon className="h-6 w-6 stroke-[1.5]" />
+                  </div>
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground">{card.title}</h3>
+                </div>
+
+                <ul className="flex flex-col gap-3 w-full mt-auto">
+                  {card.items.map((it, i) => (
+                    <li key={i} className="flex items-start text-[15px] leading-relaxed text-muted-foreground transition-colors group-hover:text-foreground/90">
+                      <span className="mr-3 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--accent)]/50 transition-colors group-hover:bg-[var(--accent)]" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

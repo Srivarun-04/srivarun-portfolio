@@ -1,10 +1,19 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
+  plugins: [
+    TanStackRouterVite(),
+    react(),
+    tailwindcss(),
+    tsconfigPaths(),
+  ],
   server: {
-    // Enable hot module replacement (HMR) - this is what auto-refreshes the page
     watch: {
-      usePolling: true, // Necessary for some environments (like Docker/ WSL) to detect file changes
+      usePolling: true,
     },
   },
 });

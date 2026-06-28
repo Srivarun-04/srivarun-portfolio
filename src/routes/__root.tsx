@@ -83,8 +83,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "AI Crafted Portfolio is a premium website showcasing an AI Engineer's projects and journey." },
       { property: "og:description", content: "AI Crafted Portfolio is a premium website showcasing an AI Engineer's projects and journey." },
       { name: "twitter:description", content: "AI Crafted Portfolio is a premium website showcasing an AI Engineer's projects and journey." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/649b03b0-94b3-4b29-bee8-16e0cc90d086/id-preview-4cb18883--641406d1-c438-4fde-a09b-5c2513d60f76.lovable.app-1782639049754.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/649b03b0-94b3-4b29-bee8-16e0cc90d086/id-preview-4cb18883--641406d1-c438-4fde-a09b-5c2513d60f76.lovable.app-1782639049754.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
